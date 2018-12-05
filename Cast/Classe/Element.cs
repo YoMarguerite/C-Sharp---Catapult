@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cast.Classe
+namespace Catapulte.Classe
 {
     class Element : Ibreakable
     {
@@ -22,9 +22,6 @@ namespace Cast.Classe
             get { return name; }
             set { name = value; }
         }
-
-        public virtual void Action() { }
-
 
         public Boolean checklife()
         {

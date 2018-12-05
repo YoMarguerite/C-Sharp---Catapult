@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cast.Classe
+namespace Catapulte.Classe
 {
     interface Ibreakable
     {

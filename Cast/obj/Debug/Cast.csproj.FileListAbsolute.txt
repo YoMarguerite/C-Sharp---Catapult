@@ -5,3 +5,10 @@ C:\Users\yoann\source\repos\Cast\Cast\obj\Debug\Cast.csprojAssemblyReference.cac
 C:\Users\yoann\source\repos\Cast\Cast\obj\Debug\Cast.csproj.CoreCompileInputs.cache
 C:\Users\yoann\source\repos\Cast\Cast\obj\Debug\Cast.exe
 C:\Users\yoann\source\repos\Cast\Cast\obj\Debug\Cast.pdb
+C:\Users\yoann\source\repos\Cast\WPF-C-\Cast\bin\Debug\Cast.exe.config
+C:\Users\yoann\source\repos\Cast\WPF-C-\Cast\bin\Debug\Cast.exe
+C:\Users\yoann\source\repos\Cast\WPF-C-\Cast\bin\Debug\Cast.pdb
+C:\Users\yoann\source\repos\Cast\WPF-C-\Cast\obj\Debug\Cast.csprojAssemblyReference.cache
+C:\Users\yoann\source\repos\Cast\WPF-C-\Cast\obj\Debug\Cast.csproj.CoreCompileInputs.cache
+C:\Users\yoann\source\repos\Cast\WPF-C-\Cast\obj\Debug\Cast.exe
+C:\Users\yoann\source\repos\Cast\WPF-C-\Cast\obj\Debug\Cast.pdb

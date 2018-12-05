@@ -4,9 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cast.Classe
+namespace Catapulte.Classe
 {
-    class Spoon
+    class Spoon : Element
     {
+        private int rock;
+
+        public bool LoadTheRock(int rock)
+        {
+            if (checklife())
+            {
+                Console.WriteLine("Chief, Spoon is ready !");
+                this.rock = rock;
+                return true;
+            }
+            Console.WriteLine("Chief, Spoon is break !");
+            return false;
+        }
+
+        public int Rock
+        {
+            get { return rock; }
+        }
     }
 }

@@ -43,13 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classe\Arm.cs" />
     <Compile Include="Classe\ArmeDeJet.cs" />
-    <Compile Include="Classe\Canon.cs" />
-    <Compile Include="Classe\Catapulte.cs" />
+    <Compile Include="Classe\Beam.cs" />
+    <Compile Include="Classe\Catapult.cs" />
     <Compile Include="Classe\Element.cs" />
     <Compile Include="Classe\HTTP.cs" />
     <Compile Include="Classe\Ibreakable.cs" />
+    <Compile Include="Classe\Rope.cs" />
     <Compile Include="Classe\Spoon.cs" />
+    <Compile Include="Classe\Trigger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
