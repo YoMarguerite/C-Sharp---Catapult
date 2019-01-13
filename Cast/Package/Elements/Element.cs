@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catapulte.Package
 {
-    public abstract class Element : Ibreakable, Iactionable
+    public abstract class Element : Ibreakable
     {
         protected String name;
         protected int vie;

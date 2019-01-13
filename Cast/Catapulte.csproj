@@ -49,12 +49,13 @@
     <Compile Include="Package\Armes\Catapult.cs" />
     <Compile Include="Package\Elements\Element.cs" />
     <Compile Include="Package\Exceptions\FormatLifeException.cs" />
-    <Compile Include="Package\Interfaces\Iactionable.cs" />
+    <Compile Include="Package\Extensions\StringExtension.cs" />
     <Compile Include="Package\Requêtes\HTTP.cs" />
     <Compile Include="Package\Interfaces\Ibreakable.cs" />
     <Compile Include="Package\Elements\Rope.cs" />
     <Compile Include="Package\Elements\Spoon.cs" />
     <Compile Include="Package\Elements\Trigger.cs" />
+    <Compile Include="Package\Requêtes\MyWebRequest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

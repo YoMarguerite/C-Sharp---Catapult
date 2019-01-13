@@ -7,6 +7,7 @@ using System.Net;
 using System.IO;
 using System.Text.RegularExpressions;
 using Cast.Package.Exceptions;
+using Cast.Package.Extensions;
 
 namespace Catapulte.Classe
 {
@@ -46,13 +47,13 @@ namespace Catapulte.Classe
             }
             finally
             {
-                Sr.Close(); // Et on ferme
+                Sr.Close(); // Et on ferme le stream
             }
 
-            int vie = default(int);
+            int vie = -1;
             try
             {
-                 vie = RecupInt(Reponse);
+                 vie = Reponse.ToLife();
             }
             catch (FormatLifeException e)
             {
@@ -62,39 +63,24 @@ namespace Catapulte.Classe
             return vie;
         }
 
-        public int RecupInt(string str)
-        {
-            //str.Substring()
-            Console.WriteLine(str);
-            MatchCollection matchCollection = Regex.Matches(str, @"\b\d+\b");
-
-            List<int> ExtractedInt = new List<int>();
-            int result;
-            foreach (Match match in matchCollection)
-            {
-                result = int.Parse(match.Value);
-                ExtractedInt.Add(result);
-            }
-
-            result = 0;
-
-            for(int i = 0; i < ExtractedInt.Count; i++)
-            {
-                result += ExtractedInt[i] * (ExtractedInt.Count - i); 
-            }
-
-            return result;
-        }
-
         public void PostFire(int power, string target)
         {
             try
             {
-                HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("https://dev18504.service-now.com/api/20557/catapulte/attack?power="+ power + "&target=" + target);
-                Req.Method = "POST"; // POST ou GET
+                string url = "https://dev18504.service-now.com/api/20557/catapulte/fire"; // Just a sample url
+                WebClient wc = new WebClient();
+
+                wc.QueryString.Add("power", power.ToString());
+                wc.QueryString.Add("target", target);
+
                 String encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
 
-                Req.Headers.Add("Authorization", "Basic " + encoded);
+                wc.Headers.Add("Authorization", "Basic " + encoded);
+
+                var data = wc.UploadValues(url, "POST", wc.QueryString);
+
+                var responseString = UnicodeEncoding.UTF8.GetString(data);
+                Console.WriteLine(responseString);
 
             }
             catch (Exception e) // En cas d'exception
@@ -108,11 +94,20 @@ namespace Catapulte.Classe
         {
             try
             {
-                HttpWebRequest Req = (HttpWebRequest)WebRequest.Create("https://dev18504.service-now.com/api/20557/catapulte/target=" + target);
-                Req.Method = "POST"; // POST ou GET
+
+                string url = "https://dev18504.service-now.com/api/20557/catapulte"; // Just a sample url
+                WebClient wc = new WebClient();
+
+                wc.QueryString.Add("target", target);
+
                 String encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
 
-                Req.Headers.Add("Authorization", "Basic " + encoded);
+                wc.Headers.Add("Authorization", "Basic " + encoded);
+
+                var data = wc.UploadValues(url, "POST", wc.QueryString);
+
+                var responseString = UnicodeEncoding.UTF8.GetString(data);
+                Console.WriteLine(responseString);
 
             }
             catch (Exception e) // En cas d'exception

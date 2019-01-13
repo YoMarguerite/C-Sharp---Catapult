@@ -25,8 +25,16 @@ namespace Catapulte.Package
             elements[2].Name = "Trigger";
             elements[3].Name = "Arm";
             elements[4].Name = "Beam";
+        }
 
-            rock = new Rock();
+        private int InitRock()
+        {
+            Random rand = new Random();
+            this.rock = new Rock();
+
+            this.rock.Width = rand.Next(4, 8);
+            this.rock.Weight = 40 / this.rock.Width;
+            return this.rock.Weight * this.rock.Width;
         }
 
         public override void PrepaTir(List<int> vie_elements)
@@ -36,17 +44,13 @@ namespace Catapulte.Package
                 elements[i].Life = vie_elements[i];
             }
 
-            Random rand = new Random();
-
-            rock.Width = rand.Next( 4 , 8 );
-            rock.Weight = rand.Next( 3 , 5 );
+            this.power = InitRock();                //CAST IMPLICIT
 
             Console.WriteLine("Chief, Catapult is Preparing !");
         }
 
         public override double Tir()
-        {
-            power = rock.Weight * rock.Width;
+        {                      
 
             foreach(Element element in elements)
             {
@@ -72,10 +76,10 @@ namespace Catapulte.Package
 
             if (verif)
             {
-                Console.WriteLine("Chief, Catapult is ready !");
+                Console.WriteLine("Chief, Catapult is Ready !");
                 return true;
             }
-            Console.WriteLine("Chief, hum ... Catapult is destroy !");
+            Console.WriteLine("Chief, hum ... Catapult is Destroy !");
             return false;
         }
 

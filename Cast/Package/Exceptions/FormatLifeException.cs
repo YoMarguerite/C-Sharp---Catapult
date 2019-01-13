@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Cast.Package.Exceptions
 {
    
-    class FormatLifeException : FormatException
+    public class FormatLifeException : FormatException
     {
-        FormatLifeException(string valeur) : base("La valeur récupérez : " + valeur + " n'est pas correpond à la vie d'un élément.") {}
+        public FormatLifeException(string valeur) : base("FormatLifeException : La valeur récupérez : " + valeur + " ne correponds pas à la vie d'un élément.") {}
     }
 }
