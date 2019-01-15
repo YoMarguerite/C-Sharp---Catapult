@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+
+//Classe MyWebRequest
 
 namespace Cast.Package.Requêtes
 {
+    //MyWebRequest est une classe permettant d'effectuer des requêtes HTTP, GET ou POST
     public class MyWebRequest
     {
+        //Déclaration des variables d'instance
         private WebRequest request;
         private Stream dataStream;
 
@@ -17,18 +18,14 @@ namespace Cast.Package.Requêtes
         private readonly string username = "groupe12";
         private readonly string password = "FFHPkR5V";
 
+        //Propriété Status, mutateur et accesseur de status
         public String Status
         {
-            get
-            {
-                return status;
-            }
-            set
-            {
-                status = value;
-            }
+            get{ return status; }
+            set{ status = value; }
         }
 
+        //Constructeur de MyWebRequest
         public MyWebRequest(string url)
         {
             // Create a request using a URL that can receive a post.
@@ -36,74 +33,85 @@ namespace Cast.Package.Requêtes
             request = WebRequest.Create(url);
         }
 
+        //Seconde implémentation du Constructeur de MyWebRequest
         public MyWebRequest(string url, string method)
             : this(url)
         {
+            //Encodage des données pour autoriser la requête
             String encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
 
             request.Headers.Add("Authorization", "Basic " + encoded);
 
+            //Si method est égale à "GET" ou "POST"
             if (method.Equals("GET") || method.Equals("POST"))
             {
-                // Set the Method property of the request to POST.
+                //Alors on définit la methode de la requête
                 request.Method = method;
             }
             else
             {
+                //Sinon on lève une Exception
                 throw new Exception("Invalid Method Type");
             }
         }
 
-        public MyWebRequest(string url, string method, string data)
+        //Troisième implémentation du Constructeur de MyWebRequest
+        public MyWebRequest(string url, string method, string postData)
             : this(url, method)
         {
-            // Create POST data and convert it to a byte array.
-            string postData = data;
+            // Encodage des données à POST
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
 
-            // Set the ContentType property of the WebRequest.
-            
+
+            //Définition du ContentType
             request.ContentType = "application/x-www-form-urlencoded";
 
-            // Set the ContentLength property of the WebRequest.
+
+            //Définition du ContentLength
             request.ContentLength = byteArray.Length;
 
-            // Get the request stream.
+
+            //Accès au flux de la requête
             dataStream = request.GetRequestStream();
 
-            // Write the data to the request stream.
+
+            //Ecriture des données dans le flux de la requête
             dataStream.Write(byteArray, 0, byteArray.Length);
 
-            // Close the Stream object.
+
+            //On ferme le flux
             dataStream.Close();
 
         }
 
+        //Méthode GetResponse permettant d'obtenir la réponse du serveur à la requête
         public string GetResponse()
         {
             string responseFromServer = null;
-            // Get the original response.
+
             try
             {
+                //On obtient la réponse d'origine
                 WebResponse response = request.GetResponse();
                 this.Status = ((HttpWebResponse)response).StatusDescription;
 
-                // Get the stream containing all content returned by the requested server.
+                //On obtient le flux de la réponse du serveur
                 dataStream = response.GetResponseStream();
 
-                // Open the stream using a StreamReader for easy access.
+                //On ouvre le flux
                 StreamReader reader = new StreamReader(dataStream);
 
-                // Read the content fully up to the end.
+                //Lecture du flux jusqu'à la fin
                 responseFromServer = reader.ReadToEnd();
 
-                // Clean up the streams.
+                //Fermeture des flux
                 reader.Close();
                 dataStream.Close();
                 response.Close();
             }
             catch(WebException e)
             {
+                //Si l'obtention de la réponse du serveur échoue on lève une WebException
                 Console.WriteLine(e.Message);
             }
             

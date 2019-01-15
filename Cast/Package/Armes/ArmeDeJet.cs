@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
+//Classe ArmeDeJet
 
 namespace Catapulte.Package
 {
-    public abstract class ArmeDeJet
+    //ArmeDeJet est une classe abstraite générique
+    public abstract class ArmeDeJet<T>
     {
-        protected Element[] elements;
+        //Tableau générique des éléments composant l'ArmeDeJet
+        protected T[] elements;
 
-        public Element[] Elements
+        //Accesseur du tableau des éléments
+        public T[] Elements
         {
             get { return elements; }
         }
 
+        //Déclaration des méthodes abstraites réutilisées dans les classes filles
         public abstract void PrepaTir(List<int> vie_elements);
 
         public abstract double Tir();

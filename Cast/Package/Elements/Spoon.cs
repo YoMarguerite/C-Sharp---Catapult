@@ -1,28 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+//Classe Spoon
 
 namespace Catapulte.Package
 {
+    //Spoon hérite de la classe Element
     class Spoon : Element
     {
-
-        public override Boolean checklife()
-        {
-            if (base.checklife())
-            {
-                Console.WriteLine("Chief, Spoon is Ready !");
-            }
-            else
-            {
-                Console.WriteLine("Chief, Spoon is break !");
-            }
-
-            return base.checklife();
-        }
-
+        //Méthode Action qui modifie l'implémentation de la méthode abstraite héritée
         public override void Action()
         {
             Console.WriteLine("Chief, Rock is Load !");

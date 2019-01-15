@@ -1,27 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+//Classe Beam
 
 namespace Catapulte.Package
 {
+    //Beam hérite de la classe Element
     class Beam : Element
     {
-        public override Boolean checklife()
-        {
-            if (base.checklife())
-            {
-                Console.WriteLine("Chief, Beam is Ready !");
-            }
-            else
-            {
-                Console.WriteLine("Chief, Beam is break !");
-            }
-
-            return base.checklife();
-        }
-
+        //Méthode Action qui modifie l'implémentation de la méthode abstraite héritée
         public override void Action()
         {
             Console.WriteLine("Chief, Beam correctly stop the Arm !");
